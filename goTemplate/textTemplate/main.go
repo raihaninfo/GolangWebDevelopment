@@ -27,5 +27,4 @@ func main() {
 		fmt.Println(err)
 	}
 	eml.Execute(os.Stdout, data)
-
 }
