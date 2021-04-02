@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	emailtext := `hello {{.firstName}} {{.lastName}}
+	emailtext := `hello {{ .firstName}} {{ .lastName}}
 	Thank you for registering at myapp. 
 	your login url {{.url}}
 	Thank you so much`
