@@ -7,15 +7,15 @@ import (
 )
 
 func main() {
-	emailtext := `hello {{ .firstName}} {{ .lastName}}
+	emailtext := `hello {{ .FirstName}} {{ .LastName}}
 	Thank you for registering at myapp. 
-	your login url {{.url}}
+	your login url {{.Url}}
 	Thank you so much`
 
 	data := struct {
-		firstName string
-		lastName  string
-		url       string
+		FirstName string
+		LastName  string
+		Url       string
 	}{
 		"Md Abu",
 		"Raihan",
