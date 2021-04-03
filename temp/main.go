@@ -10,15 +10,14 @@ func main() {
 	<!DOCTYPE html>
 	<html>
 	<head>
-	<title>` + name + `</title>
+		<title>` + name + `</title>
 	</head>
-	<body>
-	
-	<h1>` + heading + `</h1>
-	<p>` + paragraph + `</p>
-	
-	</body>
+		<body>
+			<h1>` + heading + `</h1>
+			<p>` + paragraph + `</p>
+		</body>
 	</html> 
 	`
+
 	fmt.Println(webtem)
 }
