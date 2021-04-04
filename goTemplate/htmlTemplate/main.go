@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+
 	// template parse
 	tmp, err := template.ParseFiles("one.gohtml", "two.gohtml")
 
@@ -15,5 +16,5 @@ func main() {
 	}
 
 	// template exicute
-	tmp.Execute(os.Stdout, nil)
+	tmp.Execute(os.Stdout, 21)
 }
