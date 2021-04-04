@@ -7,8 +7,8 @@
     <title>one template</title>
 </head>
 <body>
-    {{if .}}
-    <h1>This is one golang template {{.}}</h1>
+    {{if.}}
+        {{if eq 100 .}} This section is valid {{else}} This value is {{.}} {{end}}
     {{end}}
 </body>
 </html>
