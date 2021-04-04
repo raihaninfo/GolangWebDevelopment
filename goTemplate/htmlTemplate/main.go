@@ -16,5 +16,5 @@ func main() {
 	}
 
 	// template exicute
-	tmp.Execute(os.Stdout, 21)
+	tmp.Execute(os.Stdout, 1000.50)
 }
