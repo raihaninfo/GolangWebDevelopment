@@ -11,5 +11,5 @@ func main() {
 
 // route function
 func home(w http.ResponseWriter, r *http.Request) {
-	// response
+	//
 }
