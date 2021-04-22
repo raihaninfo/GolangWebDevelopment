@@ -19,7 +19,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			fmt.Println(err.Error())
 		}
-
 		// template exicute
 		tmp.Execute(w, nil)
 
@@ -41,5 +40,4 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		}
 		tmp.Execute(w, nil)
 	}
-
 }
