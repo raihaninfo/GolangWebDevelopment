@@ -15,7 +15,6 @@ func main() {
 func handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	if r.URL.Path == "/" {
-		// fmt.Fprint(w, "<h2>This is home page</h2>")
 		tmp, err := template.ParseFiles("index.gohtml")
 
 		if err != nil {
@@ -25,7 +24,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		tmp.Execute(w, nil)
 
 	} else if r.URL.Path == "/about" {
-		// fmt.Fprint(w, "<h2>This is About page</h2>")
 		tmp, err := template.ParseFiles("about.gohtml")
 		if err != nil {
 			fmt.Println(err.Error())
