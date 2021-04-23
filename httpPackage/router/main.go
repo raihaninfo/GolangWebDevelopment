@@ -7,8 +7,10 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
+	mask := &http.ServeMux{}
+	// http.HandleFunc("/", handler)
+	mask.HandleFunc("/", handler)
+	http.ListenAndServe(":8080", mask)
 }
 func handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
