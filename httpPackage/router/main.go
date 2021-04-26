@@ -8,7 +8,6 @@ import (
 
 func main() {
 	mask := &http.ServeMux{}
-	// http.HandleFunc("/", handler)
 	mask.HandleFunc("/", handler)
 	http.ListenAndServe(":8080", mask)
 }
@@ -29,8 +28,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(err.Error())
 		}
 		tmp.Execute(w, nil)
+
 	} else if r.URL.Path == "/con" {
 		fmt.Fprint(w, "<h2>Contact page</h2>")
+
 	} else {
 		// fmt.Fprint(w, "<h2>This is 404 page</h2>")
 		w.WriteHeader(http.StatusNotFound)
