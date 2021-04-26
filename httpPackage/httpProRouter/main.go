@@ -10,7 +10,9 @@ import (
 func main() {
 	router := httprouter.New()
 	router.GET("/hello/:name", Hello)
+
 	// http.HandleFunc("/", handlerFunc)
+
 	http.ListenAndServe(":8080", router)
 }
 
