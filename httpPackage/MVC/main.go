@@ -27,5 +27,6 @@ func about(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
+
 	tmp.Execute(w, nil)
 }
