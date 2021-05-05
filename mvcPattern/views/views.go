@@ -1,6 +1,9 @@
 package views
 
-import "html/template"
+import (
+	"fmt"
+	"html/template"
+)
 
 func NewView(layout string, files ...string) *View {
 	files = append(files,
@@ -10,7 +13,7 @@ func NewView(layout string, files ...string) *View {
 	)
 	t, err := template.ParseFiles(files...)
 	if err != nil {
-		panic(err)
+		fmt.Println(err.Error())
 	}
 
 	return &View{
