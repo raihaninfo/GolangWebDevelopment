@@ -22,7 +22,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 func contact(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	err := contactView.Template.ExecuteTemplate(w, contactView.Layout, nil )
+	err := contactView.Template.ExecuteTemplate(w, contactView.Layout, nil)
 	if err != nil {
 		panic(err)
 	}
@@ -30,7 +30,7 @@ func contact(w http.ResponseWriter, r *http.Request) {
 
 func about(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	err:= homeView.Template.ExecuteTemplate(w, aboutView.Layout, nil)
+	err := aboutView.Template.ExecuteTemplate(w, aboutView.Layout, nil)
 	if err != nil {
 		panic(err)
 	}
