@@ -15,17 +15,11 @@ var (
 
 func home(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	err := homeView.Template.ExecuteTemplate(w, homeView.Layout, nil)
-	if err != nil {
-		panic(err)
-	}
+	chErr(homeView.Render(w, nil))
 }
 func contact(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	err := contactView.Template.ExecuteTemplate(w, contactView.Layout, nil)
-	if err != nil {
-		panic(err)
-	}
+	chErr(contactView.Render(w, nil))
 }
 
 func about(w http.ResponseWriter, r *http.Request) {
@@ -46,4 +40,10 @@ func main() {
 	r.HandleFunc("/contact", contact)
 	r.HandleFunc("/about", about)
 	http.ListenAndServe(":8080", r)
+}
+
+func chErr(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
