@@ -2,6 +2,7 @@ package main
 
 import (
 	"GolangWebDevelopment/mvcPattern/views"
+	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
