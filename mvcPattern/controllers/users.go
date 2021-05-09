@@ -23,6 +23,5 @@ func (u *Users) New(w http.ResponseWriter, r *http.Request) {
 
 func (u *Users) Create(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	// fmt.Fprintln(w, "this is fake massage")
 	fmt.Fprintf(w, "This is signup page")
 }
