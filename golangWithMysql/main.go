@@ -15,4 +15,20 @@ func main() {
 	}
 	fmt.Println("Connected to the database....")
 	defer db.Close()
+
+	// err = db.Ping()
+	// if err != nil {
+	// 	fmt.Println("error verifying connection with db.Ping")
+	// 	panic(err.Error())
+	// }
+
+	//"INSERT INTO `contact` (`id`, `name`, `email`, `phone`, `message`) VALUES (NULL, '%s', '%s', '%s', '%s');"
+	insert, err := db.Query("INSERT INTO `product`(`id`, `name`, `price`, `description`) VALUES (`id`,'mobile','125','description')")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	insert.Close()
+
 }
