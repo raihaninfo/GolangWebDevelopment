@@ -25,7 +25,7 @@ func main() {
 	insert, err := db.Query("INSERT INTO `product`(`id`, `name`, `price`, `description`) VALUES (`id`,'mobile','125','description')")
 
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Insert query error", err)
 	}
 
 	insert.Close()
