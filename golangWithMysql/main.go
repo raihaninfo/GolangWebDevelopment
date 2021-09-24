@@ -13,7 +13,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	fmt.Println("Connected to the database....")
+
 	defer db.Close()
 
 	// err = db.Ping()
@@ -22,6 +24,8 @@ func main() {
 	// 	panic(err.Error())
 	// }
 
+
+	// database insert query function
 	insert, err := db.Query("INSERT INTO `product`(`id`, `name`, `price`, `description`) VALUES (`id`,'mobile','125','description')")
 
 	if err != nil {
