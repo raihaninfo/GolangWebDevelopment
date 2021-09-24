@@ -24,7 +24,6 @@ func main() {
 	// 	panic(err.Error())
 	// }
 
-
 	// database insert query function
 	insert, err := db.Query("INSERT INTO `product`(`id`, `name`, `price`, `description`) VALUES (`id`,'mobile','125','description')")
 
