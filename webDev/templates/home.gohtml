@@ -10,13 +10,11 @@
 
 <body>
     <h2>This is home page</h2>
-    <h3>My Info</h3>
+    <h3>Market list</h3>
     <ul>
-        <li>{{.Name}}</li>
-        <li>{{.FatherName}}</li>
-        <li>{{.Age}}</li>
-        <li>{{.Pession}}</li>
-        <li>{{.Mobile}}</li>
+        {{range .}}
+        <li>{{.}}</li>
+        {{end}}
     </ul>
 </body>
 
