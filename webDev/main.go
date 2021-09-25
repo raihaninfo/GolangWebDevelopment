@@ -14,7 +14,6 @@ type myinfo struct {
 	Mobile     string
 }
 
-var name string = "Hasan"
 var info myinfo
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
