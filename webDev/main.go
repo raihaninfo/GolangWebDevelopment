@@ -21,6 +21,8 @@ type list []string
 var li list
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
+
+	// ParseFiles
 	tem, err := template.ParseFiles("templates/home.gohtml")
 	if err != nil {
 		fmt.Println(err.Error())
