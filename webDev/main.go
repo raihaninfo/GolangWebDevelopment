@@ -18,6 +18,11 @@ import (
 
 type list []string
 
+type sub struct {
+	Username string
+	Userdata string
+}
+
 var li list
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
@@ -38,6 +43,25 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 	tem.Execute(w, nil)
 }
 
+func getform(w http.ResponseWriter, r *http.Request) {
+	tem, err := template.ParseFiles("templates/getform.gohtml", "templates/header.gohtml")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	tem.Execute(w, nil)
+}
+
+func thanks(w http.ResponseWriter, r *http.Request) {
+	var s sub
+	s.Username = r.FormValue("username")
+	s.Userdata = r.FormValue("data")
+	tem, err := template.ParseFiles("templates/thanks.gohtml", "templates/header.gohtml")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	tem.Execute(w, s)
+}
+
 func main() {
 	// info = myinfo{
 	// 	Name:       "Md Abu Raihan",
@@ -50,6 +74,8 @@ func main() {
 	li = list{"Mango", "egg", "Apple", "banana", "pineapple", "water"}
 
 	http.HandleFunc("/", homeHandler)
+	http.HandleFunc("/getform", getform)
+	http.HandleFunc("/thanks", thanks)
 	http.HandleFunc("/about", aboutHandler)
 	http.ListenAndServe(":8080", nil)
 }
