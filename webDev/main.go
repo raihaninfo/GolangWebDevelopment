@@ -1,6 +1,7 @@
 package main
 
 import (
+	"GolangWebDevelopment/webDev/stract"
 	"fmt"
 	"net/http"
 	"text/template"
@@ -18,10 +19,10 @@ import (
 
 type list []string
 
-type sub struct {
-	Username string
-	Userdata string
-}
+// type sub struct {
+// 	Username string
+// 	Userdata string
+// }
 
 var li list
 
@@ -52,9 +53,10 @@ func getform(w http.ResponseWriter, r *http.Request) {
 }
 
 func thanks(w http.ResponseWriter, r *http.Request) {
-	var s sub
+	var s stract.Sub
 	s.Username = r.FormValue("username")
 	s.Userdata = r.FormValue("data")
+
 	tem, err := template.ParseFiles("templates/thanks.gohtml", "templates/header.gohtml")
 	if err != nil {
 		fmt.Println(err.Error())
