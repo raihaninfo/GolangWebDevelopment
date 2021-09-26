@@ -23,7 +23,7 @@ var li list
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 
 	// ParseFiles
-	tem, err := template.ParseFiles("templates/home.gohtml")
+	tem, err := template.ParseFiles("templates/home.gohtml", "templates/header.gohtml")
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -31,7 +31,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
-	tem, err := template.ParseFiles("templates/about.gohtml")
+	tem, err := template.ParseFiles("templates/about.gohtml", "templates/header.gohtml")
 	if err != nil {
 		fmt.Println(err.Error())
 	}
