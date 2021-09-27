@@ -78,6 +78,7 @@ func main() {
 	http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/getform", getform)
 	http.HandleFunc("/thanks", thanks)
+	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 	http.HandleFunc("/about", aboutHandler)
 	http.ListenAndServe(":8080", nil)
 }
