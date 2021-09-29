@@ -20,7 +20,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(r.Method)
+		// fmt.Println(r.Method)
 		tmp, err := template.ParseFiles("template/home.gohtml")
 		if err != nil {
 			fmt.Println(err.Error())
