@@ -8,10 +8,6 @@ import (
 	"text/template"
 )
 
-// func homeHandler(w) {
-
-// }
-
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	tmp, err := template.ParseFiles("template/home.gohtml")
 	if err != nil {
@@ -62,8 +58,12 @@ func main() {
 		}
 		osFile.Write(fileBytes)
 
-		
-		
+		tmp, err := template.ParseFiles("template/welcome.gohtml")
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+		tmp.Execute(w, nil)
+
 	})
 
 	http.HandleFunc("/", homeHandler)
