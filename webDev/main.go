@@ -75,7 +75,7 @@ func main() {
 
 	li = list{"Mango", "egg", "Apple", "banana", "pineapple", "water"}
 
-	//route
+	//
 	http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/getform", getform)
 	http.HandleFunc("/thanks", thanks)
