@@ -5,4 +5,4 @@ This repository all about Golang web Development
 - html package 
 - template package
 - sql package and driver
-- etc.
+- etc
