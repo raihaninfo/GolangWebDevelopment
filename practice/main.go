@@ -10,14 +10,23 @@ import (
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
-	tmp, err := template.ParseFiles("view/home.gohtml")
+	tmp, err := template.ParseFiles("view/home.gohtml", "view/header.gohtml")
 	if err != nil {
 		log.Fatal(err)
 	}
 	tmp.Execute(w, nil)
 }
 func notFount(w http.ResponseWriter, r *http.Request) {
-	tmp, err := template.ParseFiles("view/404.gohtml")
+	w.WriteHeader(http.StatusNotFound)
+	tmp, err := template.ParseFiles("view/404.gohtml", "view/header.gohtml")
+	if err != nil {
+		log.Fatal(err)
+	}
+	tmp.Execute(w, nil)
+}
+
+func about(w http.ResponseWriter, r *http.Request)  {
+	tmp, err := template.ParseFiles("view/about.gohtml", "view/header.gohtml")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,6 +36,7 @@ func notFount(w http.ResponseWriter, r *http.Request) {
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", home)
+	r.HandleFunc("/about", about)
 	r.NotFoundHandler = http.HandlerFunc(notFount)
 	fmt.Println("Listening port :8080")
 	http.ListenAndServe(":8080", r)
