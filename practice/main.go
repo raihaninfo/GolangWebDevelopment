@@ -25,7 +25,7 @@ func notFount(w http.ResponseWriter, r *http.Request) {
 	tmp.Execute(w, nil)
 }
 
-func about(w http.ResponseWriter, r *http.Request)  {
+func about(w http.ResponseWriter, r *http.Request) {
 	tmp, err := template.ParseFiles("view/about.gohtml", "view/header.gohtml")
 	if err != nil {
 		log.Fatal(err)
