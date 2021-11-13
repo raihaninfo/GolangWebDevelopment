@@ -43,10 +43,24 @@ func reg(w http.ResponseWriter, r *http.Request) {
 }
 
 func reqauth(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello")
 	r.ParseForm()
 	username := r.FormValue("username")
 	password := r.FormValue("password")
+	var namelenth bool = false
+	if 5 <= len(username) && len(username) <= 50 {
+		namelenth = true
+	}
+
+	if namelenth {
+		tmp, err := template.ParseFiles("view/regauth.gohtml", "view/header.gohtml")
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+		tmp.Execute(w, nil)
+		return
+	} else {
+		fmt.Fprintf(w, "Give me right user name")
+	}
 	fmt.Println(username, password)
 }
 
