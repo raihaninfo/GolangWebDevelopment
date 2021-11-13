@@ -2,7 +2,7 @@
 
 <div class="login">
     <form action="/regauth">
-        <label  for="">user name</label>
+        <label for="">user name</label>
         <input required name="username" type="text">
         <br>
         <label for="">password</label>
@@ -10,6 +10,12 @@
         <br>
         <input required type="submit" value="Register">
     </form>
+        <p>usernames must be longer than 5 characters but shorter than 51</p>
+        <p>passsword must be longer than 8 characters but shorter than 40</p>
+    <br>
+    {{if .}}
+        {{.}}
+    {{end}}
 </div>
 
 

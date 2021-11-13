@@ -50,16 +50,25 @@ func reqauth(w http.ResponseWriter, r *http.Request) {
 	if 5 <= len(username) && len(username) <= 50 {
 		namelenth = true
 	}
+	passlenth := false
+	if 8 <= len(password) && len(password) <= 40 {
+		passlenth = true
+	}
 
-	if namelenth {
+	if !namelenth || !passlenth {
+		tmp, err := template.ParseFiles("view/reg.gohtml", "view/header.gohtml")
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+		tmp.Execute(w, "Give me right user name and password")
+		return
+	} else if namelenth || passlenth {
 		tmp, err := template.ParseFiles("view/regauth.gohtml", "view/header.gohtml")
 		if err != nil {
 			fmt.Println(err.Error())
 		}
 		tmp.Execute(w, nil)
 		return
-	} else {
-		fmt.Fprintf(w, "Give me right user name")
 	}
 	fmt.Println(username, password)
 }
