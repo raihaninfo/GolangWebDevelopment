@@ -34,19 +34,28 @@ func about(w http.ResponseWriter, r *http.Request) {
 	tmp.Execute(w, nil)
 }
 
-func login(w http.ResponseWriter, r *http.Request) {
-	tmp, err := template.ParseFiles("view/login.gohtml", "view/header.gohtml")
+func reg(w http.ResponseWriter, r *http.Request) {
+	tmp, err := template.ParseFiles("view/reg.gohtml", "view/header.gohtml")
 	if err != nil {
 		fmt.Println(err.Error())
 	}
 	tmp.Execute(w, nil)
 }
 
+func reqauth(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello")
+	r.ParseForm()
+	username := r.FormValue("username")
+	password := r.FormValue("password")
+	fmt.Println(username, password)
+}
+
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", home)
 	r.HandleFunc("/about", about)
-	r.HandleFunc("/login", login)
+	r.HandleFunc("/reg", reg)
+	r.HandleFunc("/regauth", reqauth)
 	r.NotFoundHandler = http.HandlerFunc(notFount)
 	fmt.Println("Listening port :8080")
 	http.ListenAndServe(":8080", r)
