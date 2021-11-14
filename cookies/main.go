@@ -40,7 +40,7 @@ func create(w http.ResponseWriter, r *http.Request) {
 	}
 	tpl, err := template.ParseFiles("templates/create.gohtml")
 	if err != nil {
-		panic(err)
+		fmt.Println(err.Error())
 	}
 	tpl.Execute(w, nil)
 }
@@ -51,7 +51,7 @@ func delete(w http.ResponseWriter, r *http.Request) {
 	session.Save(r, w)
 	tpl, err := template.ParseFiles("templates/delete.gohtml")
 	if err != nil {
-		panic(err)
+		fmt.Println(err.Error())
 	}
 	tpl.Execute(w, nil)
 }
