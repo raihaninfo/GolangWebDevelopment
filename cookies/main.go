@@ -38,7 +38,7 @@ func create(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	tpl, err := template.ParseFiles("templates/create.gohtml")
+	tpl, err := template.ParseFiles("view/create.gohtml")
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -49,7 +49,7 @@ func delete(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "login-session")
 	session.Options.MaxAge = -1
 	session.Save(r, w)
-	tpl, err := template.ParseFiles("templates/delete.gohtml")
+	tpl, err := template.ParseFiles("view/delete.gohtml")
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -57,7 +57,7 @@ func delete(w http.ResponseWriter, r *http.Request) {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-	temp, err := template.ParseFiles("templates/home.gohtml")
+	temp, err := template.ParseFiles("view/home.gohtml")
 	if err != nil {
 		fmt.Println(err.Error())
 	}
