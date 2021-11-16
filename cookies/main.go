@@ -14,13 +14,13 @@ var store = sessions.NewCookieStore([]byte("secret-password"))
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", home)
-	r.HandleFunc("/create", create)
-	r.HandleFunc("/delete", delete)
+	r.HandleFunc("/create", createSession)
+	r.HandleFunc("/delete", deleteSession)
 	fmt.Println("Listening port :8080")
 	http.ListenAndServe(":8080", r)
 }
 
-func create(w http.ResponseWriter, r *http.Request) {
+func createSession(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -45,7 +45,7 @@ func create(w http.ResponseWriter, r *http.Request) {
 	tpl.Execute(w, nil)
 }
 
-func delete(w http.ResponseWriter, r *http.Request) {
+func deleteSession(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "login-session")
 	session.Options.MaxAge = -1
 	session.Save(r, w)
