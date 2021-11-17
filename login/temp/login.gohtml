@@ -10,6 +10,12 @@
     <input type="password" name="password" id="">
     <br>
     <input type="submit" value="Login">
+
+    <p>
+        {{if .}}
+        {{.}}
+        {{end}}
+    </p>
 </form>
 </body>
 
