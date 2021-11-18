@@ -45,6 +45,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 	tem.Execute(w, nil)
 }
+
 func loginAuth(w http.ResponseWriter, r *http.Request) {
 
 	r.ParseForm()
