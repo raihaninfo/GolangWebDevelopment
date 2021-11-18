@@ -6,7 +6,10 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/gorilla/sessions"
 )
+
+var store = sessions.NewCookieStore([]byte("secret-password"))
 
 func main() {
 	r := mux.NewRouter()
@@ -43,26 +46,43 @@ func login(w http.ResponseWriter, r *http.Request) {
 	tem.Execute(w, nil)
 }
 func loginAuth(w http.ResponseWriter, r *http.Request) {
+
 	r.ParseForm()
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 	fmt.Println(username, password)
 	var userLenth bool = false
-	if 5 <= len(username) && 50 >= len(username) {
+	if username == "raihan" {
 		userLenth = true
 	}
 	var passlenth bool = false
-	if 5 <= len(password) && 30 >= len(password) {
+	if password == "password" {
 		passlenth = true
 	}
 	if !userLenth || !passlenth {
 		temp, err := template.ParseFiles("temp/login.gohtml", "temp/header.gohtml")
 		if err != nil {
-			panic(err)
+			fmt.Println(err.Error())
 		}
 		temp.Execute(w, "Please give me right user name & password")
 
 	} else if userLenth || passlenth {
+		session, err := store.Get(r, "login-session")
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		session.Options = &sessions.Options{
+			Path:     "/",
+			MaxAge:   86400 * 30,
+			HttpOnly: true,
+		}
+		session.Values["name"] = username
+		err = session.Save(r, w)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 		temp, err := template.ParseFiles("temp/loginauth.gohtml", "temp/header.gohtml")
 		if err != nil {
 			panic(err)
