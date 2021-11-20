@@ -32,7 +32,10 @@ func notFount(w http.ResponseWriter, r *http.Request) {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-	session, _ := store.Get(r, "login-session")
+	session, err := store.Get(r, "login-session")
+	if err != nil {
+		panic(err)
+	}
 	_, ok := session.Values["username"]
 	if !ok {
 		http.Redirect(w, r, "/login", http.StatusFound)
@@ -46,7 +49,10 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 
 func about(w http.ResponseWriter, r *http.Request) {
-	session, _ := store.Get(r, "login-session")
+	session, err := store.Get(r, "login-session")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 	_, ok := session.Values["username"]
 	if !ok {
 		http.Redirect(w, r, "/login", http.StatusFound)
@@ -60,7 +66,10 @@ func about(w http.ResponseWriter, r *http.Request) {
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
-	session, _ := store.Get(r, "login-session")
+	session, err := store.Get(r, "login-session")
+	if err != nil {
+		panic(err)
+	}
 	_, ok := session.Values["username"]
 	if ok {
 		http.Redirect(w, r, "/", http.StatusFound)
@@ -75,7 +84,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 }
 
 func logout(w http.ResponseWriter, r *http.Request) {
-	session, _ := store.Get(r, "login-session")
+	session, err := store.Get(r, "login-session")
+	if err != nil {
+		panic(err)
+	}
 	delete(session.Values, "username")
 	session.Save(r, w)
 	http.Redirect(w, r, "/login", http.StatusFound)
