@@ -1,22 +1,24 @@
 {{template "Header"}}
-<h1>Welcome to our side</h1>
-<form action="/loginauth" method="post">
-    <label for="">User Name</label>
-    <br>
-    <input type="text" name="username" id="">
-    <br>
-    <label for="">password</label>
-    <br>
-    <input type="password" name="password" id="">
-    <br>
-    <input type="submit" value="Login">
+<div style="width: 1200px; margin: auto;">
+    <h1 style="padding-top: 30px;">Welcome to our side</h1>
+    <form action="/loginauth" method="post">
+        <label for="">User Name</label>
+        <br>
+        <input type="text" name="username" id="">
+        <br>
+        <label for="">password</label>
+        <br>
+        <input type="password" name="password" id="">
+        <br>
+        <input type="submit" value="Login">
 
-    <p>
-        {{if .}}
-        {{.}}
-        {{end}}
-    </p>
-</form>
+        <p style="padding-top: 10px;color: red;">
+            {{if .}}
+            {{.}}
+            {{end}}
+        </p>
+    </form>
+</div>
 </body>
 
 </html>

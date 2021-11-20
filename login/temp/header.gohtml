@@ -7,14 +7,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login system</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: rgb(51, 47, 47);
+        }
+
+        nav ul li {
+            display: inline-block;
+            padding: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/login">login</a></li>
-        <li><a href="/logout">logout</a></li>
-    </ul>
+    <nav>
+        <ul style="list-style: none;">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/login">login</a></li>
+            <li><a href="/logout">logout</a></li>
+        </ul>
+    </nav>
 
 
     {{end}}
