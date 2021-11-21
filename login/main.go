@@ -23,71 +23,61 @@ func main() {
 	http.ListenAndServe(":8080", r)
 }
 
-func notFount(w http.ResponseWriter, r *http.Request) {
-	tem, err := template.ParseFiles("temp/404.gohtml", "temp/header.gohtml")
+func Checkerror(err error) {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
+}
+
+func notFount(w http.ResponseWriter, r *http.Request) {
+	tem, err := template.ParseFiles("temp/404.gohtml", "temp/header.gohtml")
+	Checkerror(err)
 	tem.Execute(w, nil)
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
-	if err != nil {
-		panic(err)
-	}
+	Checkerror(err)
 	_, ok := session.Values["username"]
 	if !ok {
 		http.Redirect(w, r, "/login", http.StatusFound)
 		return
 	}
 	tem, err := template.ParseFiles("temp/home.gohtml", "temp/header.gohtml")
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	Checkerror(err)
 	tem.Execute(w, nil)
 }
 
 func about(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	Checkerror(err)
 	_, ok := session.Values["username"]
 	if !ok {
 		http.Redirect(w, r, "/login", http.StatusFound)
 		return
 	}
 	tem, err := template.ParseFiles("temp/about.gohtml", "temp/header.gohtml")
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	Checkerror(err)
 	tem.Execute(w, nil)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
-	if err != nil {
-		panic(err)
-	}
+	Checkerror(err)
 	_, ok := session.Values["username"]
 	if ok {
 		http.Redirect(w, r, "/", http.StatusFound)
 		return
 	}
 	tem, err := template.ParseFiles("temp/login.gohtml", "temp/header.gohtml")
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	Checkerror(err)
 	tem.Execute(w, nil)
 
 }
 
 func logout(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
-	if err != nil {
-		panic(err)
-	}
+	Checkerror(err)
 	delete(session.Values, "username")
 	session.Save(r, w)
 	http.Redirect(w, r, "/login", http.StatusFound)
@@ -109,9 +99,7 @@ func loginAuth(w http.ResponseWriter, r *http.Request) {
 	}
 	if !userLenth || !passlenth {
 		temp, err := template.ParseFiles("temp/login.gohtml", "temp/header.gohtml")
-		if err != nil {
-			fmt.Println(err.Error())
-		}
+		Checkerror(err)
 		temp.Execute(w, "Please give me right user name & password")
 
 	} else if userLenth || passlenth {
