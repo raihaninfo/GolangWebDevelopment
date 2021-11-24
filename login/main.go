@@ -13,6 +13,7 @@ var store = sessions.NewCookieStore([]byte("secret-password"))
 
 func main() {
 	r := mux.NewRouter()
+	// 404 page router
 	r.NotFoundHandler = http.HandlerFunc(notFount)
 	r.HandleFunc("/", home)
 	r.HandleFunc("/about", about)
@@ -28,7 +29,7 @@ func Checkerror(err error) {
 		fmt.Println(err.Error())
 	}
 }
-
+// 404 handler
 func notFount(w http.ResponseWriter, r *http.Request) {
 	tem, err := template.ParseFiles("temp/404.gohtml", "temp/header.gohtml")
 	Checkerror(err)
@@ -69,10 +70,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusFound)
 		return
 	}
+
 	tem, err := template.ParseFiles("temp/login.gohtml", "temp/header.gohtml")
 	Checkerror(err)
 	tem.Execute(w, nil)
-
 }
 
 func logout(w http.ResponseWriter, r *http.Request) {
@@ -84,7 +85,6 @@ func logout(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginAuth(w http.ResponseWriter, r *http.Request) {
-
 	r.ParseForm()
 	username := r.FormValue("username")
 	password := r.FormValue("password")
@@ -120,7 +120,5 @@ func loginAuth(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		http.Redirect(w, r, "/", http.StatusFound)
-
 	}
-
 }
