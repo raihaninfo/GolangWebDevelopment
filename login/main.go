@@ -29,6 +29,7 @@ func Checkerror(err error) {
 		fmt.Println(err.Error())
 	}
 }
+
 // 404 handler
 func notFount(w http.ResponseWriter, r *http.Request) {
 	tem, err := template.ParseFiles("temp/404.gohtml", "temp/header.gohtml")
@@ -93,10 +94,12 @@ func loginAuth(w http.ResponseWriter, r *http.Request) {
 	if username == "raihan" {
 		userLenth = true
 	}
+
 	var passlenth bool = false
 	if password == "password" {
 		passlenth = true
 	}
+
 	if !userLenth || !passlenth {
 		temp, err := template.ParseFiles("temp/login.gohtml", "temp/header.gohtml")
 		Checkerror(err)
