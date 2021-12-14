@@ -6,4 +6,4 @@ This repository all about Golang web Development
 - template package
 - sql package and driver
 - mongo package and driver
-- etc.
+- etc
